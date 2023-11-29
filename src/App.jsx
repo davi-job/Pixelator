@@ -103,7 +103,7 @@ function App() {
 								className="app__sliderInput"
 								type="range"
 								min="2"
-								max="32"
+								max="64"
 								value={pixelSize}
 								onChange={(e) => setPixelSize(e.target.value)}
 							/>
@@ -120,8 +120,8 @@ function App() {
 								id="pixelSize"
 								className="app__sliderInput"
 								type="range"
-								min="2"
-								max="32"
+								min="1"
+								max="64"
 								value={pixelSize}
 								onChange={(e) => setPixelSize(e.target.value)}
 							/>
