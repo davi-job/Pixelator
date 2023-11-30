@@ -52,19 +52,136 @@
 
 		justify-content: center;
 		align-items: center;
+
+		.app__sliderContainer {
+			display: flex;
+			flex-direction: column;
+
+			gap: 0.6rem;
+
+			justify-content: center;
+			align-items: center;
+
+			.app__sliderInput {
+				width: 260px;
+			}
+
+			.btn {
+				width: 3rem;
+				height: 3rem;
+
+				border-radius: 50%;
+				border: 2px solid #205e20;
+
+				background-color: #57fa57;
+
+				color: #205e20;
+
+				font-weight: 700;
+				font-size: 2.2rem;
+
+				cursor: pointer;
+
+				outline: 2px solid transparent;
+				outline-offset: 0px;
+
+				transition: all 0.2s ease-in-out;
+			}
+
+			.btn:hover {
+				background-color: #205e20;
+
+				color: #57fa57;
+
+				outline: 2px solid #57fa57;
+				outline-offset: -4px;
+			}
+		}
 	}
 
-	.app__sliderContainer {
+	.app__btns {
 		display: flex;
-		flex-direction: column;
 
-		gap: 0.6rem;
+		gap: 3.2rem;
 
 		justify-content: center;
 		align-items: center;
+
+		.btn {
+			padding: 0.8rem 1.6rem;
+
+			border-radius: 500px;
+			border: 2px solid #205e20;
+
+			background-color: #57fa57;
+
+			color: #205e20;
+
+			font-weight: 700;
+			font-size: 1.6rem;
+
+			cursor: pointer;
+
+			outline: 2px solid transparent;
+			outline-offset: 0px;
+
+			transition: all 0.2s ease-in-out;
+		}
+
+		.btn:last-of-type {
+			background-color: #ff2a2a;
+			border-color: #400000;
+			color: #400000;
+		}
+
+		.btn:hover {
+			background-color: #205e20;
+
+			color: #57fa57;
+
+			outline: 2px solid #57fa57;
+			outline-offset: -4px;
+		}
+
+		.btn:last-of-type:hover {
+			background-color: #400000;
+			color: #ff2a2a;
+			outline-color: #ff2a2a;
+		}
 	}
 
-	.app__sliderInput {
-		width: 260px;
+	.app__colorPalette {
+		display: flex;
+
+		gap: 2.6rem;
+
+		justify-content: center;
+		align-items: center;
+
+		.app__color {
+			width: 4rem;
+			height: 4rem;
+
+			border-radius: 25%;
+
+			cursor: pointer;
+
+			transition: all 0.2s ease-in-out;
+		}
+
+		.app__color:hover {
+			box-shadow: inset 0 0 0 4rem rgba(255, 0, 0, 0.5);
+
+			transform: scale(1.1);
+		}
 	}
+}
+
+canvas {
+	image-rendering: optimizeSpeed; /* Older versions of FF          */
+	image-rendering: -moz-crisp-edges; /* FF 6.0+                       */
+	image-rendering: -webkit-optimize-contrast; /* Safari                        */
+	image-rendering: -o-crisp-edges; /* OS X & Windows Opera (12.02+) */
+	image-rendering: pixelated; /* Awesome future-browsers       */
+	-ms-interpolation-mode: nearest-neighbor; /* IE                            */
 }
