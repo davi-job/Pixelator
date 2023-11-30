@@ -11,25 +11,28 @@ function App() {
 		const url = URL.createObjectURL(file);
 		const img = new Image();
 
-		img.onload = () => {
-			const maxDimension = 600; // Maximum width or height
-			let width, height;
-			if (img.width > img.height) {
-				width = maxDimension;
-				height = (img.height / img.width) * maxDimension;
-			} else {
-				height = maxDimension;
-				width = (img.width / img.height) * maxDimension;
-			}
+		img.src = url;
 
+		img.onload = () => {
+			// Create a canvas with the image scaled down by the pixel size
 			const canvas = document.createElement("canvas");
 			const ctx = canvas.getContext("2d");
 
-			canvas.width = img.width;
-			canvas.height = img.height;
+			canvas.width = img.width / pixelSize;
+			canvas.height = img.height / pixelSize;
 
+			// Create a canvas with the image scaled back up to the original size
+			const scaledCanvas = document.createElement("canvas");
+			const scaledCtx = scaledCanvas.getContext("2d");
+
+			scaledCanvas.width = img.width;
+			scaledCanvas.height = img.height;
+
+			// Disable image smoothing to keep the pixelated effect
 			ctx.imageSmoothingEnabled = false;
+			scaledCtx.imageSmoothingEnabled = false;
 
+			// Draw the image scaled down by the pixel size
 			ctx.drawImage(
 				img,
 				0,
@@ -38,22 +41,11 @@ function App() {
 				img.height / pixelSize
 			);
 
-			ctx.drawImage(
-				canvas,
-				0,
-				0,
-				img.width / pixelSize,
-				img.height / pixelSize,
-				0,
-				0,
-				img.width,
-				img.height
-			);
+			// Draw the scaled down image back up to the original size
+			scaledCtx.drawImage(canvas, 0, 0, img.width, img.height);
 
-			setPreviewURL(canvas.toDataURL());
+			setPreviewURL(scaledCanvas.toDataURL());
 		};
-
-		img.src = url;
 	};
 
 	const handleFileChange = (event) => {
@@ -73,7 +65,7 @@ function App() {
 		if (selectedFile) {
 			processImage(selectedFile, pixelSize);
 		}
-	}, [pixelSize, selectedFile]);
+	}, [pixelSize]);
 
 	return (
 		<>
@@ -90,52 +82,36 @@ function App() {
 				/>
 
 				{previewURL && (
-					<div className="app__sliders">
-						<div className="app__sliderContainer">
-							<label
-								className="app__sliderLabel"
-								htmlFor="pixelSize"
-							>
-								Pixel Size
-							</label>
-							<input
-								id="pixelSize"
-								className="app__sliderInput"
-								type="range"
-								min="2"
-								max="32"
-								value={pixelSize}
-								onChange={(e) => setPixelSize(e.target.value)}
-							/>
+					<>
+						<div className="app__sliders">
+							<div className="app__sliderContainer">
+								<label
+									className="app__sliderLabel"
+									htmlFor="pixelSize"
+								>
+									Pixel Size
+								</label>
+								<input
+									id="pixelSize"
+									className="app__sliderInput"
+									type="range"
+									min="1"
+									max="128"
+									value={pixelSize}
+									onChange={(e) =>
+										setPixelSize(e.target.value)
+									}
+								/>
+							</div>
 						</div>
 
-						<div className="app__sliderContainer">
-							<label
-								className="app__sliderLabel"
-								htmlFor="pixelSize"
-							>
-								Pixel Size
-							</label>
-							<input
-								id="pixelSize"
-								className="app__sliderInput"
-								type="range"
-								min="2"
-								max="32"
-								value={pixelSize}
-								onChange={(e) => setPixelSize(e.target.value)}
-							/>
-						</div>
-					</div>
-				)}
-
-				{previewURL && (
-					<img
-						className="app__previewImage"
-						src={previewURL}
-						height={500}
-						alt="Preview"
-					/>
+						<img
+							className="app__previewImage"
+							src={previewURL}
+							width={900}
+							alt="Preview image"
+						/>
+					</>
 				)}
 			</div>
 		</>

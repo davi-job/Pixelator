@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 6.4rem;
+  padding: 4.6rem 0;
   justify-content: center;
   align-items: center;
   min-height: 100dvh;
@@ -42,7 +43,7 @@
   align-items: center;
 }
 .app__container .app__sliderInput {
-  width: 180px;
+  width: 260px;
 }
 
 /*# sourceMappingURL=uploadFile.css.map */
