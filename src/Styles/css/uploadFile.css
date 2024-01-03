@@ -35,15 +35,87 @@
   justify-content: center;
   align-items: center;
 }
-.app__container .app__sliderContainer {
+.app__container .app__sliders .app__sliderContainer {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
   justify-content: center;
   align-items: center;
 }
-.app__container .app__sliderInput {
+.app__container .app__sliders .app__sliderContainer .app__sliderInput {
   width: 260px;
+}
+.app__container .app__sliders .app__sliderContainer .btn {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 2px solid #205e20;
+  background-color: #57fa57;
+  color: #205e20;
+  font-weight: 700;
+  font-size: 2.2rem;
+  cursor: pointer;
+  outline: 2px solid transparent;
+  outline-offset: 0px;
+  transition: all 0.2s ease-in-out;
+}
+.app__container .app__sliders .app__sliderContainer .btn:hover {
+  background-color: #205e20;
+  color: #57fa57;
+  outline: 2px solid #57fa57;
+  outline-offset: -4px;
+}
+.app__container .app__btns {
+  display: flex;
+  gap: 3.2rem;
+  justify-content: center;
+  align-items: center;
+}
+.app__container .app__btns .btn {
+  padding: 0.8rem 1.6rem;
+  border-radius: 500px;
+  border: 2px solid #205e20;
+  background-color: #57fa57;
+  color: #205e20;
+  font-weight: 700;
+  font-size: 1.6rem;
+  cursor: pointer;
+  outline: 2px solid transparent;
+  outline-offset: 0px;
+  transition: all 0.2s ease-in-out;
+}
+.app__container .app__btns .btn:last-of-type {
+  background-color: #ff2a2a;
+  border-color: #400000;
+  color: #400000;
+}
+.app__container .app__btns .btn:hover {
+  background-color: #205e20;
+  color: #57fa57;
+  outline: 2px solid #57fa57;
+  outline-offset: -4px;
+}
+.app__container .app__btns .btn:last-of-type:hover {
+  background-color: #400000;
+  color: #ff2a2a;
+  outline-color: #ff2a2a;
+}
+.app__container .app__colorPalette {
+  display: flex;
+  gap: 2.6rem;
+  justify-content: center;
+  align-items: center;
+}
+.app__container .app__colorPalette .app__color {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 25%;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.app__container .app__colorPalette .app__color:hover {
+  box-shadow: inset 0 0 0 4rem rgba(255, 0, 0, 0.5);
+  transform: scale(1.1);
 }
 
 /*# sourceMappingURL=uploadFile.css.map */
