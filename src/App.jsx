@@ -5,9 +5,11 @@ import "./Styles/css/uploadFile.css";
 function App() {
 	const [selectedFile, setSelectedFile] = useState();
 	const [previewURL, setPreviewURL] = useState();
+
 	const [pixelSize, setPixelSize] = useState(8); // Initial pixel size
+
 	const [colors, setColors] = useState([]); // Custom colors
-	const [selectedColor, setSelectedColor] = useState("#000000"); // Selected color
+	const [selectedColor, setSelectedColor] = useState("#fff"); // Selected color
 
 	const processImage = (file, pixelSize, customColors) => {
 		const url = URL.createObjectURL(file);
@@ -35,16 +37,9 @@ function App() {
 			scaledCtx.imageSmoothingEnabled = false;
 
 			// Draw the image scaled down by the pixel size
-			ctx.drawImage(
-				img,
-				0,
-				0,
-				img.width / pixelSize,
-				img.height / pixelSize
-			);
+			ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
 			// If custom colors are defined, replace each pixel color with the closest custom color
-
 			if (customColors && customColors.length > 0) {
 				const imageData = ctx.getImageData(
 					0,
@@ -68,7 +63,13 @@ function App() {
 			}
 
 			// Draw the scaled down image back up to the original size
-			scaledCtx.drawImage(canvas, 0, 0, img.width, img.height);
+			scaledCtx.drawImage(
+				canvas,
+				0,
+				0,
+				scaledCanvas.width,
+				scaledCanvas.height
+			);
 
 			setPreviewURL(scaledCanvas.toDataURL());
 		};
@@ -90,6 +91,7 @@ function App() {
 
 	const resetColors = () => {
 		setColors([]);
+
 		if (selectedFile) {
 			processImage(selectedFile, pixelSize);
 		}
@@ -132,6 +134,7 @@ function App() {
 
 		if (file && file.type.startsWith("image/")) {
 			setSelectedFile(file);
+			setColors([]);
 			processImage(file, pixelSize);
 		} else {
 			setSelectedFile(null);
